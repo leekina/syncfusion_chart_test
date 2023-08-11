@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'basic_chart.dart';
 import 'dummy_data.dart';
 
 void main() {
@@ -33,16 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DataList data = DataList(dummy: []);
-
-  void setData() async {
-    data.setData = await getData();
-  }
-
   @override
   void initState() {
     super.initState();
-    setData();
   }
 
   @override
@@ -51,23 +45,20 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("syncfusion chart"),
       ),
-      body: Center(
-        child: FutureBuilder(
-          future: getData(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return CircularProgressIndicator();
-            }
-            if (snapshot.hasData) {
-              return Text(data.dummy[0].date);
-            }
-            if (snapshot.hasError) {
-              return Text("error");
-            } else {
-              return Text("??");
-            }
-          },
-        ),
+      body: FutureBuilder(
+        future: getData(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Text("error");
+          } else if (snapshot.hasData) {
+            List<DataJson> temp = snapshot.data!;
+            return BasicChart(temp: temp);
+          } else {
+            return Text("??");
+          }
+        },
       ),
     );
   }

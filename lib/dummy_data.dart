@@ -26,7 +26,7 @@ void createDummyData() {
 
 class DataJson {
   String date;
-  String value;
+  double value;
   DataJson({
     required this.date,
     required this.value,
@@ -57,43 +57,43 @@ class DataList {
 
 dynamic response = {
   "data": [
-    {"date": "2023-07-01", "value": "0.50"},
-    {"date": "2023-07-02", "value": "1.70"},
-    {"date": "2023-07-03", "value": "2.20"},
-    {"date": "2023-07-04", "value": "3.75"},
-    {"date": "2023-07-05", "value": "4.50"},
-    {"date": "2023-07-06", "value": "5.73"},
-    {"date": "2023-07-07", "value": "6.40"},
-    {"date": "2023-07-08", "value": "7.27"},
-    {"date": "2023-07-09", "value": "8.23"},
-    {"date": "2023-07-10", "value": "9.02"},
-    {"date": "2023-07-11", "value": "10.71"},
-    {"date": "2023-07-12", "value": "11.16"},
-    {"date": "2023-07-13", "value": "12.68"},
-    {"date": "2023-07-14", "value": "13.95"},
-    {"date": "2023-07-15", "value": "14.84"},
-    {"date": "2023-07-16", "value": "15.97"},
-    {"date": "2023-07-17", "value": "16.64"},
-    {"date": "2023-07-18", "value": "17.53"},
-    {"date": "2023-07-19", "value": "18.57"},
-    {"date": "2023-07-20", "value": "19.53"},
-    {"date": "2023-07-21", "value": "20.76"},
-    {"date": "2023-07-22", "value": "21.08"},
-    {"date": "2023-07-23", "value": "22.59"},
-    {"date": "2023-07-24", "value": "23.98"},
-    {"date": "2023-07-25", "value": "25.00"},
-    {"date": "2023-07-26", "value": "25.36"},
-    {"date": "2023-07-27", "value": "26.53"},
-    {"date": "2023-07-29", "value": "28.89"},
-    {"date": "2023-07-30", "value": "29.05"}
+    {"date": "07-01", "value": "0.50"},
+    {"date": "07-02", "value": "1.70"},
+    {"date": "07-03", "value": "2.20"},
+    {"date": "07-04", "value": "3.75"},
+    {"date": "07-05", "value": "4.50"},
+    {"date": "07-06", "value": "5.73"},
+    {"date": "07-07", "value": "6.40"},
+    {"date": "07-08", "value": "7.27"},
+    {"date": "07-09", "value": "8.23"},
+    {"date": "07-10", "value": "9.02"},
+    {"date": "07-11", "value": "10.71"},
+    {"date": "07-12", "value": "11.16"},
+    {"date": "07-13", "value": "12.68"},
+    {"date": "07-14", "value": "13.95"},
+    {"date": "07-15", "value": "14.84"},
+    {"date": "07-16", "value": "15.97"},
+    {"date": "07-17", "value": "16.64"},
+    {"date": "07-18", "value": "17.53"},
+    {"date": "07-19", "value": "18.57"},
+    {"date": "07-20", "value": "19.53"},
+    {"date": "07-21", "value": "20.76"},
+    {"date": "07-22", "value": "21.08"},
+    {"date": "07-23", "value": "22.59"},
+    {"date": "07-24", "value": "23.98"},
+    {"date": "07-25", "value": "25.00"},
+    {"date": "07-26", "value": "25.36"},
+    {"date": "07-27", "value": "26.53"},
+    {"date": "07-29", "value": "28.89"},
+    {"date": "07-30", "value": "29.05"}
   ]
 };
 
-Future<dynamic> getData() async {
+Future<List<DataJson>> getData() async {
   List<DataJson> temp = [];
-  await Future.delayed(const Duration(seconds: 1));
+  await Future.delayed(const Duration(milliseconds: 500));
   for (Map data in response['data']) {
-    temp.add(DataJson(date: data["date"], value: data["value"]));
+    temp.add(DataJson(date: data["date"], value: double.parse(data["value"])));
   }
   print(temp);
 
