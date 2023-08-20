@@ -1,3 +1,4 @@
+//Data클래스
 class DataJson {
   String date;
   double value;
@@ -18,6 +19,7 @@ class DataJson {
         value = json['value'];
 }
 
+//DataList클래스
 class DataList {
   List<DataJson> dummy;
   DataList({
@@ -63,6 +65,7 @@ dynamic response = {
   ]
 };
 
+//json으로 데이터 가져오는것 처럼
 Future<List<DataJson>> getData() async {
   List<DataJson> temp = [];
   await Future.delayed(const Duration(milliseconds: 500));
