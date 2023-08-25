@@ -72,8 +72,6 @@ Future<List<DataJson>> getData() async {
   for (Map data in response['data']) {
     temp.add(DataJson(date: data["date"], value: double.parse(data["value"])));
   }
-  print(temp);
-
   return temp;
 }
 
